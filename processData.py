@@ -1,10 +1,10 @@
 import numpy as np
 
 # pub input example
-# pubInputSample1 = 'A 1 2 2'
-# pubInputSample2 = 'A 2 4 4'
-# pubInputSample3 = 'b 1 2 2'
-# pubInputSamples = [pubInputSample1, pubInputSample2, pubInputSample3]
+pubInputSample1 = 'A 1 1 1'
+pubInputSample2 = 'A 2 2 2'
+pubInputSample3 = 'b 1 1 1'
+pubInputSamples = [pubInputSample1, pubInputSample2, pubInputSample3]
 
 # create defailts
 A = np.array([[1, 1], [2, 2]])
@@ -16,7 +16,7 @@ def string2array(pubInputString):
     row = int(pubInputString[2])
     element1 = int(pubInputString[4])
     element2 = int(pubInputString[6])
-    print(sel_matrix, row, element1, element2)
+    # print(sel_matrix, row, element1, element2)
 
     return sel_matrix, row, element1, element2
 
@@ -30,8 +30,8 @@ def solver(sel_matrix, row, element1, element2):
     elif sel_matrix == 'b':
         b = np.array([element1, element2])
 
-    print('A: ', A)
-    print('b: ', b)
+    #print('A: ', A)
+    #print('b: ', b)
 
     x = np.matmul(A, b.T)
 
@@ -50,14 +50,11 @@ def processInput(sample):
     return xString
 
 
-# i = 1
+i = 1
 # # perform local test
-# for sample in pubInputSamples:
-#     print(f'case {i}: ')
-#     sel_matrix, row, element1, element2 = string2array(sample)
-#     x = solver(sel_matrix, row, element1, element2)
-#     xString = returntoPub(x)
-#     print('x: ', x)
-#     print('xString: ', xString)
-#     print('-----------')
-#     i += 1
+for sample in pubInputSamples:
+    print(f'case {i}: ')
+    xString = processInput(sample)
+    print('xString: ', xString)
+    print('-----------')
+    i += 1
