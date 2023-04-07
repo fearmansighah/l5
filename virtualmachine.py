@@ -8,6 +8,11 @@ import threading
 import time
 import signal
 from processData import processInput
+import numpy as np
+
+# default variables
+A = np.array([[1, 1], [2, 2]])
+b = np.array([1, 1])
 
 io.init_logging(getattr(io.LogLevel, io.LogLevel.NoLogs.name), 'stderr')
 
