@@ -1,5 +1,6 @@
 from processData import processInput
 import numpy as np
+import time
 
 A = np.array([[1, 1], [2, 2]])
 b = np.array([1, 1])
@@ -18,3 +19,11 @@ for sample in pubInputSamples:
     print('xString: ', xString)
     print('-----------')
     i += 1
+
+with open('readings.txt', 'r') as file:
+    line = file.readline()
+    while line:
+        # do something with line
+        print(line.strip())
+        time.sleep(2)
+        line = file.readline()

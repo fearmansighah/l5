@@ -105,19 +105,21 @@ print("Publishing to '{}' topic...\n".format(the_other_topic))
 print("Enter your messages (press Ctrl-C to finish):")
 
 # Infinite loop for sending messages
+with open('readings.txt', 'r') as file:  # open txt file containing sensor readings
+    line = file.readline()  # read first line
+    while line:  # enter while loop
+        try:
+            msg = line.strip()  # remove white spaces
+            mqtt_connection.publish(  # publish to readings
+                topic=the_other_topic,
+                payload=msg,
+                qos=mqtt.QoS.AT_LEAST_ONCE)
+            time.sleep(2)  # delay for 2s
+            line = file.readline()  # read next line
 
-while(True):
-    try:
-        msg = input()
-# publish message
-        mqtt_connection.publish(
-            topic=the_other_topic,
-            payload=msg,
-            qos=mqtt.QoS.AT_LEAST_ONCE)
-
-# Interrupt with Ctrl-C
-    except(KeyboardInterrupt, SystemExit):
-        break
+        # Interrupt with Ctrl-C
+        except(KeyboardInterrupt, SystemExit):
+            break
 
 
 # Disconnect

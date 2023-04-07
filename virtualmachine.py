@@ -52,19 +52,20 @@ def on_resubscribe_complete(resubscribe_future):
 # Callback when the subscribed topic receives a message
 
 
-def on_message_received(topic, payload, **kwargs):
-    decoded_payload = payload.decode("utf-8")
-    result = processInput(decoded_payload)
-
+def returnResult(result):
     # returning result
     # publish message
     mqtt_connection.publish(
         topic=the_other_topic,
-        payload=msg,
+        payload=result,
         qos=mqtt.QoS.AT_LEAST_ONCE)
 
-    # print("\nMessage Received: {}\n".format(decoded_payload))
 
+def on_message_received(topic, payload, **kwargs):
+    decoded_payload = payload.decode("utf-8")
+    result = processInput(decoded_payload)
+    returnResult(result)
+    # print("\nMessage Received: {}\n".format(decoded_payload))
     received_all_event.set()
 
 
