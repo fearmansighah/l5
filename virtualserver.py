@@ -114,6 +114,7 @@ with open('readings.txt', 'r') as file:  # open txt file containing sensor readi
                 topic=the_other_topic,
                 payload=msg,
                 qos=mqtt.QoS.AT_LEAST_ONCE)
+            print('Sending :', msg)
             time.sleep(2)  # delay for 2s
             line = file.readline()  # read next line
 
