@@ -53,7 +53,7 @@ def on_resubscribe_complete(resubscribe_future):
 
 
 def returnResult(result):
-    print('Sending', result)
+    print('Sending: ', result)
     # returning result
     # publish message
     mqtt_connection.publish(
